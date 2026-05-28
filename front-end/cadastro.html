@@ -1,25 +1,66 @@
  <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Cidade Segura - Cadastro</title>
+    <link rel="stylesheet" href= "css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-    <h1>Cadastro</h1>
-    <form action="/cadastro" method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br><br>
 
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="e-mail" required><br><br>
-         <label for="number">Telefone:</label>
-        <input type="number" id="numero" name="numero" required><br><br>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <span class="material-symbols-outlined logo-icon">shield</span>
+                <h1>Cidade Segura</h1>
+                <p class="subtitle">Criar nova conta de acesso</p>
+            </div>
 
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required><br><br>
+            <form action="/cadastro" method="POST">
+                <div class="input-group">
+                    <label for="nome">Nome Completo</label>
+                    <div class="input-field">
+                        <span class="material-symbols-outlined input-icon">person</span>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                    </div>
+                </div>
 
-        <button type="submit">Cadastrar</button>
-    </form>
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <div class="input-field">
+                        <span class="material-symbols-outlined input-icon">mail</span>
+                        <input type="email" id="email" name="e-mail" placeholder="seu@email.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="numero">Telefone</label>
+                    <div class="input-field">
+                        <span class="material-symbols-outlined input-icon">call</span>
+                        <input type="number" id="numero" name="numero" placeholder="(00) 00000-0000" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha de Acesso</label>
+                    <div class="input-field">
+                        <span class="material-symbols-outlined input-icon">lock</span>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span class="material-symbols-outlined">vpn_key</span>
+                    Cadastrar Sistema
+                </button>
+            </form>
+            
+            <div class="card-footer">
+                <span class="status-indicator"></span> Conexão Segura SSL Ativa
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
