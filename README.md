@@ -5,15 +5,15 @@ PROJETO: Cidade Segura
 
 INTEGRANTES:
 
-Diego [Sobrenome] - RM: [00000] - Função: Desenvolvedor Frontend
+Diego
 
-Elvis [Sobrenome] - RM: [00000] - Função: Designer UI/UX e Documentação
+Elvis 
 
-Kaloa [Sobrenome] - RM: [00000] - Função: Product Owner e Negócios
+Kaloa 
 
-Pedro Henrique [Sobrenome] - RM: [00000] - Função: Desenvolvedor Backend
+Pedro Henrique 
 
-Richard [Sobrenome] - RM: [00000] - Função: Administrador de Banco de Dados (DBA)
+Richard 
 
 PROBLEMA E DESAFIO ABORDADO:
 A falta de segurança em bairros e ruas é uma preocupação constante para os cidadãos. A escassez de informações centralizadas e em tempo real sobre incidentes locais dificulta a prevenção e a tomada de decisões rápidas pela comunidade. O Cidade Segura nasce para mitigar esse problema, conectando moradores e fornecendo ferramentas colaborativas para aumentar a vigilância comunitária e a segurança coletiva.
