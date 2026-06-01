@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cidade Segura - Cadastro</title>
-    <link rel="stylesheet" href= "css/style.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 
     <div class="container">
         <div class="card">
+            
             <div class="card-header">
                 <span class="material-symbols-outlined logo-icon">shield</span>
                 <h1>Cidade Segura</h1>
                 <p class="subtitle">Criar nova conta de acesso</p>
             </div>
 
-            <form action="/cadastro" method="POST">
+            <form action="index.html" method="GET">
                 <div class="input-group">
                     <label for="nome">Nome Completo</label>
                     <div class="input-field">
@@ -30,15 +31,15 @@
                     <label for="email">E-mail</label>
                     <div class="input-field">
                         <span class="material-symbols-outlined input-icon">mail</span>
-                        <input type="email" id="email" name="e-mail" placeholder="seu@email.com" required>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label for="numero">Telefone</label>
+                    <label for="telefone">Telefone</label>
                     <div class="input-field">
                         <span class="material-symbols-outlined input-icon">call</span>
-                        <input type="number" id="numero" name="numero" placeholder="(00) 00000-0000" required>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
                     </div>
                 </div>
 
@@ -55,12 +56,15 @@
                     Cadastrar Sistema
                 </button>
             </form>
-            
+
+            <div class="center-link">
+                Já tem uma conta? <a href="login.html">Voltar para o Login</a>
+            </div>
+
             <div class="card-footer">
                 <span class="status-indicator"></span> Conexão Segura SSL Ativa
             </div>
-        </div>
-    </div>
 
+        </div> </div> <script src="js/cadastro.js"></script>
 </body>
 </html>

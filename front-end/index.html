@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cidade Segura - Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../front-end/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
-       
+        
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
@@ -27,7 +27,6 @@
         }
         .btn-delete-alert:hover { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
 
-       
         .history-panel {
             display: none; flex: 3; background-color: #0f172a; border-radius: 12px;
             border: 1px solid rgba(56, 189, 248, 0.15); padding: 25px; overflow-y: auto;
@@ -36,11 +35,200 @@
         .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .history-header h2 { color: #fff; font-size: 20px; display: flex; align-items: center; gap: 10px; }
         
-
         .history-table { width: 100%; border-collapse: collapse; text-align: left; color: #e2e8f0; }
         .history-table th { padding: 12px 16px; border-bottom: 2px solid rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 14px; }
         .history-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
         .history-table tr:hover { background-color: rgba(56, 189, 248, 0.02); }
+
+        .user-profile-container {
+            position: relative;
+            display: inline-block;
+        }
+        .user-profile-trigger {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: background-color 0.2s ease;
+        }
+        .user-profile-trigger:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 125%;
+            right: 0;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            min-width: 190px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            z-index: 10000; 
+            overflow: hidden;
+            padding: 6px 0;
+        }
+        .profile-dropdown.active {
+            display: block !important;
+        }
+        .profile-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .profile-dropdown a:hover {
+            background-color: #334155;
+            color: #ffffff;
+        }
+        .dropdown-divider {
+            border: 0;
+            height: 1px;
+            background-color: #334155;
+            margin: 6px 0;
+        }
+        .profile-dropdown a.delete-account-btn {
+            color: #f87171;
+        }
+        .profile-dropdown a.delete-account-btn:hover {
+            background-color: #991b1b;
+            color: #ffffff;
+        }
+
+        .account-panel {
+            display: none; 
+            flex: 3; 
+            background-color: #0f172a; 
+            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.15); 
+            padding: 30px; 
+            overflow-y: auto;
+        }
+        .account-panel.active { 
+            display: block; 
+        }
+        
+        .avatar-upload-wrapper {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-bottom: 30px;
+            gap: 12px;
+        }
+        .avatar-preview-box {
+            width: 115px; 
+            height: 115px; 
+            border-radius: 50%; 
+            background-color: #080c14; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            border: 2px dashed rgba(56, 189, 248, 0.4); 
+            overflow: hidden; 
+            background-size: cover; 
+            background-position: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-photo-picker {
+            background-color: #0e1625; 
+            color: #f8fafc; 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            font-size: 12px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            transition: all 0.2s ease;
+        }
+        .btn-photo-picker:hover { 
+            background-color: rgba(56, 189, 248, 0.1);
+            border-color: #38bdf8;
+        }
+
+        .modern-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .modern-input-group label {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 500;
+            padding-left: 2px;
+        }
+        .modern-input-field {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .modern-input-field .input-icon {
+            position: absolute;
+            left: 14px;
+            color: #64748b;
+            font-size: 20px !important;
+            pointer-events: none;
+        }
+        .modern-input-field input {
+            width: 100%;
+            padding: 12px 14px 12px 45px;
+            background-color: #080c14;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 14px;
+            font-family: 'Nunito', sans-serif !important;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        .modern-input-field input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .modern-input-group.disabled .modern-input-field {
+            opacity: 0.4;
+        }
+        .modern-input-group.disabled input {
+            cursor: not-allowed;
+            background-color: #0b111e;
+        }
+
+        .btn-save-account {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: 1px solid #10b981;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            transition: all 0.2s ease;
+            margin-top: 25px;
+        }
+        .btn-save-account:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
+        }
+        .btn-save-account:active {
+            transform: translateY(1px);
+        }
     </style>
 </head>
 <body class="dashboard-body">
@@ -64,6 +252,9 @@
             <a href="#" id="menu-denuncias" class="menu-item" onclick="showSection('denuncias')">
                 <span class="material-symbols-outlined">history</span> Suas Denúncias
             </a>
+            <a href="#" id="menu-conta-sidebar" class="menu-item" onclick="showSection('conta')">
+                <span class="material-symbols-outlined">manage_accounts</span> Minha Conta
+            </a>
             
             <div class="sidebar-footer">
                 <a href="#" class="menu-item text-muted" onclick="alert('Cidade Segura v1.2 - Hackathon 2026')">
@@ -85,12 +276,32 @@
                 <button class="btn-emergency" onclick="emitirEmergencia()">
                     <span class="material-symbols-outlined">gpp_maybe</span> EMERGENCY
                 </button>
-                <div class="user-profile">
-                    <span class="username">Richard</span>
-                    <div class="profile-avatar">
-                        <span class="material-symbols-outlined">account_circle</span>
+                
+                <div class="user-profile-container">
+                    <div class="user-profile-trigger" id="profileTrigger">
+                        <span class="username" id="topNavUsername">Richard</span>
+                        <div class="profile-avatar" id="topNavAvatarContainer" style="margin: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 50%; width: 32px; height: 32px;">
+                            <span class="material-symbols-outlined">account_circle</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="#" id="nav-conta-dropdown" onclick="showSection('conta')">
+                            <span class="material-symbols-outlined">manage_accounts</span>
+                            Minha Conta
+                        </a>
+                        <a href="login.html">
+                            <span class="material-symbols-outlined">logout</span>
+                            Sair do Sistema
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="delete-account-btn" id="deleteAccountBtn">
+                            <span class="material-symbols-outlined">delete_forever</span>
+                            Excluir Conta
+                        </a>
                     </div>
                 </div>
+
             </div>
         </header>
 
@@ -106,7 +317,7 @@
             <div class="history-panel" id="section-historico-wrapper">
                 <div class="history-header">
                     <h2><span class="material-symbols-outlined" style="color: #38bdf8;">history</span> Minhas Ocorrências Registradas</h2>
-                    <button class="btn-submit" style="width: auto; padding: 8px 15px; font-size: 12px;" onclick="showSection('inicio')">Voltar ao Mapa</button>
+                    <button class="btn-submit" style="width: auto; padding: 8px 15px; font-size: 12px; margin: 0;" onclick="showSection('inicio')">Voltar ao Mapa</button>
                 </div>
                 <table class="history-table">
                     <thead>
@@ -124,6 +335,45 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="account-panel" id="section-conta-wrapper">
+                <div class="history-header">
+                    <h2><span class="material-symbols-outlined" style="color: #38bdf8;">manage_accounts</span> Configurações do Perfil</h2>
+                    <button class="btn-submit" style="width: auto; padding: 8px 15px; font-size: 12px; margin: 0;" onclick="showSection('inicio')">Voltar ao Mapa</button>
+                </div>
+                
+                <div class="avatar-upload-wrapper">
+                    <div class="avatar-preview-box" id="avatarPreview">
+                        <span class="material-symbols-outlined" id="defaultAvatarIcon" style="font-size: 70px; color: #64748b;">account_circle</span>
+                    </div>
+                    <label for="avatarUpload" class="btn-photo-picker">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">photo_camera</span> Escolher Foto
+                    </label>
+                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                </div>
+
+                <form id="formMinhaConta" style="max-width: 450px; margin: 0 auto;">
+                    <div class="modern-input-group">
+                        <label for="accountName">Nome Completo</label>
+                        <div class="modern-input-field">
+                            <span class="material-symbols-outlined input-icon">person</span>
+                            <input type="text" id="accountName" value="Richard" required placeholder="Seu nome">
+                        </div>
+                    </div>
+
+                    <div class="modern-input-group disabled">
+                        <label for="accountEmail">E-mail Cadastrado</label>
+                        <div class="modern-input-field">
+                            <span class="material-symbols-outlined input-icon">mail</span>
+                            <input type="email" id="accountEmail" value="richard_jaime@estudante.sesisenai.org.br" disabled>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-save-account">
+                        <span class="material-symbols-outlined">save</span> Salvar Alterações
+                    </button>
+                </form>
             </div>
 
             <div class="alerts-side-panel">
@@ -199,7 +449,6 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-
         const map = L.map('map').setView([-27.5954, -48.5480], 13);
 
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -222,7 +471,6 @@
 
         function excluirAlerta(idAlerta) {
             if(confirm("Deseja remover este alerta do monitoramento local?")) {
-                
                 const card = document.getElementById(idAlerta);
                 if (card) card.remove();
 
@@ -236,32 +484,68 @@
         function showSection(section) {
             const mapaWrapper = document.getElementById('section-mapa-wrapper');
             const historicoWrapper = document.getElementById('section-historico-wrapper');
+            const contaWrapper = document.getElementById('section-conta-wrapper');
             
             const menuInicio = document.getElementById('menu-inicio');
             const menuDenuncias = document.getElementById('menu-denuncias');
+            const menuContaSidebar = document.getElementById('menu-conta-sidebar');
+            
             const navInicio = document.getElementById('nav-inicio');
             const navDenuncias = document.getElementById('nav-denuncias');
 
+            mapaWrapper.style.display = "none";
+            historicoWrapper.classList.remove('active');
+            contaWrapper.classList.remove('active');
+            
+            menuInicio.classList.remove('active');
+            menuDenuncias.classList.remove('active');
+            if(menuContaSidebar) menuContaSidebar.classList.remove('active');
+            navInicio.classList.remove('active');
+            navDenuncias.classList.remove('active');
+
             if(section === 'inicio') {
-                historicoWrapper.classList.remove('active');
                 mapaWrapper.style.display = "block";
-                
                 setTimeout(() => { map.invalidateSize(); }, 50);
-
                 menuInicio.classList.add('active');
-                menuDenuncias.classList.remove('active');
                 navInicio.classList.add('active');
-                navDenuncias.classList.remove('active');
             } else if(section === 'denuncias') {
-                mapaWrapper.style.display = "none";
                 historicoWrapper.classList.add('active');
-
-                menuInicio.classList.remove('active');
                 menuDenuncias.classList.add('active');
-                navInicio.classList.remove('active');
                 navDenuncias.classList.add('active');
+            } else if(section === 'conta') {
+                contaWrapper.classList.add('active');
+                if(menuContaSidebar) menuContaSidebar.classList.add('active');
             }
         }
+
+        document.getElementById('avatarUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const avatarPreview = document.getElementById('avatarPreview');
+                    const defaultIcon = document.getElementById('defaultAvatarIcon');
+                    
+                    if(defaultIcon) defaultIcon.style.display = 'none';
+                    avatarPreview.style.backgroundImage = `url('${e.target.result}')`;
+                    
+                    const topAvatarContainer = document.getElementById('topNavAvatarContainer');
+                    if(topAvatarContainer) {
+                        topAvatarContainer.innerHTML = `<img src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('formMinhaConta').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const novoNome = document.getElementById('accountName').value;
+            const topNavUsername = document.getElementById('topNavUsername');
+            if(topNavUsername) topNavUsername.textContent = novoNome;
+            
+            alert('🛡️ Sucesso! Dados cadastrais atualizados localmente.');
+        });
 
         document.getElementById('formOcorrencia').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -283,7 +567,6 @@
                 });
 
                 if(response.ok) {
-                    
                     const feed = document.getElementById('feedAlertas');
                     const novoCard = document.createElement('div');
                     novoCard.className = 'feed-card critical';
@@ -303,7 +586,6 @@
                     `;
                     feed.insertBefore(novoCard, feed.firstChild);
 
-                    
                     const tabelaCorpo = document.getElementById('listaSuasDenuncias');
                     const linhaVazia = document.getElementById('linha-vazia');
                     if(linhaVazia) linhaVazia.remove(); 
@@ -320,7 +602,6 @@
                     `;
                     tabelaCorpo.insertBefore(novaLinha, tabelaCorpo.firstChild);
 
-                    
                     const randomLat = -27.5954 + (Math.random() - 0.5) * 0.02;
                     const randomLng = -48.5480 + (Math.random() - 0.5) * 0.02;
                     
@@ -353,5 +634,6 @@
             }
         }
     </script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>

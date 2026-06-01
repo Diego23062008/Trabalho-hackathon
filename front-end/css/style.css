@@ -1,3 +1,13 @@
+ /* ==========================================
+   1. RESET UNIVERSAL SEGURO 
+   (Protege o mapa Leaflet de sumir)
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 *:not(.material-symbols-outlined) {
     font-family: 'Nunito', sans-serif !important;
 }
@@ -5,6 +15,10 @@
 .material-symbols-outlined {
     font-family: 'Material Symbols Outlined' !important;
 }
+
+/* ==========================================
+   2. ESTRUTURA DO DASHBOARD PRINCIPAL
+   ========================================== */
 .dashboard-body {
     display: flex;
     align-items: stretch;
@@ -147,12 +161,6 @@
     box-shadow: 0 0 25px rgba(239, 68, 68, 0.7);
 }
 
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .username {
     font-size: 14px;
     color: #e2e8f0;
@@ -164,12 +172,16 @@
     align-items: center;
 }
 
+/* ==========================================
+   3. VIEWPORT E MAPA
+   ========================================== */
 .dashboard-viewport {
     flex: 1;
     display: flex;
     padding: 20px;
     gap: 20px;
-    height: calc(100% - 70px);
+    height: calc(100vh - 70px); /* Garante altura perfeita na tela */
+    min-height: 0;
 }
 
 .map-wrapper {
@@ -200,7 +212,18 @@
     gap: 8px;
 }
 
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
 
+/* ==========================================
+   4. PAINEL DE ALERTAS LATERAIS
+   ========================================== */
 .alerts-side-panel {
     flex: 1;
     background-color: #0f172a;
@@ -255,3 +278,225 @@
     margin-top: 4px;
 }
 
+/* ==========================================
+   5. TELA DE CONFIGURAÇÕES DE PERFIL / CONTA
+   ========================================== */
+.profile-settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.profile-modern-card {
+    background-color: #0f172a; 
+    border: 1px solid rgba(56, 189, 248, 0.15); 
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.profile-card-header .title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-card-header h2 {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+}
+
+.profile-card-header .header-icon {
+    color: #38bdf8;
+    font-size: 24px !important;
+}
+
+.btn-back-map {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(148, 163, 184, 0.08);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    color: #94a3b8;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-back-map:hover {
+    background-color: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.profile-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-wrapper {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: #080c14;
+    border: 2px dashed rgba(56, 189, 248, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.avatar-wrapper span {
+    font-size: 64px !important;
+    color: #38bdf8;
+}
+
+.btn-choose-photo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #0e1625;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-choose-photo:hover {
+    background-color: rgba(56, 189, 248, 0.15);
+    border-color: #38bdf8;
+}
+
+.profile-form-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-input-group label {
+    font-size: 13px;
+    color: #94a3b8; 
+    font-weight: 500;
+}
+
+.profile-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-input-wrapper .input-icon {
+    position: absolute;
+    left: 14px;
+    color: #64748b;
+    font-size: 20px !important;
+}
+
+.profile-input-wrapper input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    background-color: #080c14; 
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.profile-input-wrapper input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.profile-input-group.disabled input {
+    background-color: #0b111e;
+    color: #64748b;
+    border-color: rgba(56, 189, 248, 0.05);
+    cursor: not-allowed;
+}
+
+.profile-input-group.disabled .input-icon {
+    color: #475569;
+}
+
+.btn-save-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: 1px solid #10b981;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-save-profile:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
+}
+
+.btn-save-profile:active {
+    transform: translateY(1px);
+}
+
+/* Opcional: Garante rodapé legível */
+.card-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}

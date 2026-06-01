@@ -1,0 +1,152 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: #0f172a; 
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #1e293b; 
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid #334155;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo-icon {
+    font-size: 48px !important; 
+    color: #38bdf8;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.input-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: #94a3b8;
+    font-size: 20px !important;
+}
+
+input {
+    width: 100%;
+    padding: 12px 14px 12px 44px;
+    background-color: #0f172a;
+    border: 1.5px solid #334155;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+::placeholder {
+    color: #64748b;
+}
+
+.btn-submit {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #0ea5e9;
+    transform: translateY(-1px);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.card-footer {
+    text-align: center !important;
+    margin-top: 25px !important;
+    font-size: 13px !important;
+    color: #ffffff !important; 
+    font-weight: 500;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #10b981; 
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981; 
+}

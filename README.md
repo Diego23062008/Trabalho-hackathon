@@ -22,11 +22,11 @@ TECNOLOGIAS UTILIZADAS:
 
 Frontend: HTML5, CSS3, JavaScript (ou React / Vue)
 
-Backend: Node.js (Express) ou Python (Flask/Django)
+Backend: Node.js (Express)
 
-Banco de Dados: PostgreSQL ou MongoDB
+Banco de Dados: PostgreSQL:
 
-Mapas/APIs: Google Maps API ou Leaflet.js
+Mapas/APIs: Google Maps API:
 
 FUNCIONALIDADES IMPLEMENTADAS:
 
